@@ -1,0 +1,5 @@
+major:
+- add to the website so any1 can toss in their save ^^
+minor: 
+- add artifact functionality to LightLevel
+- add eclipse functionality to LightLevel 

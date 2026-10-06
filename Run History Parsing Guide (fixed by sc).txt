@@ -1,0 +1,105 @@
+each line of the history file is one run
+
+strings are encoded as a 2-character hexadecimal number followed by that many characters.
+for example '07truffel' or '1cYou venture into the Dimwood'
+
+ - 2 string: version
+ - 2 string: date
+ - 2 string: starter name
+ - 2 string: game over message
+ - 6: seed
+ - 8 int: time
+ - 2 int: loops
+ - 2 int: descension
+ - 2 int: max HP
+ - 2 int: current hp
+
+ - 2 int: number of artifacts
+    EACH ARTIFACT
+    - 2 int: length of artifact data string
+    - 2 string: artifact name
+    
+    extra data can't really be parsed without each artifact's specific decoder
+    this is used for the specific pip combo on scroll / charm artifacts
+    but is usually zero
+    - 2 int: number of extra data
+        - EACH PIECE OF EXTRA DATA IS A TABLE OF INTEGERS
+        - 2 int: length
+            - EACH LENGTH
+            - 2 int: data
+
+ - 2 int: number of cards
+    EACH CARD
+    - 2 int: length of card data string
+    - 4 int: card ID
+    - 4 int: card art number
+    - 2 int: card frame number
+    - 2 int: number of modification ticks
+    - 2 string: display name of the card
+    - 20x pips
+        FOUR PHRASES, 5 PIPS EACH COUNTING EMPTY SPACES
+        FROM TOP TO BOTTOM: ANY, LIGHT, DIM, DARK
+        - 2 int: pip id
+            0 - Empty
+            1 - Light
+            2 - Dim
+            3 - Dark
+            4 - Lighten
+            5 - Darken
+            6 - Damage
+            7 - Mushroom
+            8 - Hurt
+            9 - Lifesteal
+            10 - Heal
+            11 - Block
+            12 - Bi Block
+            13 - Tri Damage
+            14 - Poison
+            15 - Lock
+            16 - Energy
+            17 - Draw
+            18 - Exhaust
+            19 - Consume
+            20 - Coin
+            21 - Bargain
+    - 5x stamps
+        EACH STAMP
+        - 2 int: stamp ID (0 means no stamp)
+    
+        extra data can't really be parsed without each artifact's specific decoder
+        this is used for the specific pip combo on switch stamps
+        but is usually zero
+        - 2 int: number of extra data
+            - EACH PIECE OF EXTRA DATA IS A TABLE OF INTEGERS
+            - 2 int: length
+                - EACH LENGTH
+                - 2 int: data
+    - 4 int: tags
+        A LIST OF BINARY TAGS
+        check if the tag number is equal or greater than each threshold, from largest to smallest
+        if equal or greater than a threshold, that means the corresponding tag is true
+        or that the corresponding data is present
+
+        2^12: grafted
+            IF GRAFTED
+            - 4 int: the art grafted onto the card
+        2^11: whether the grafted art is inverted
+        2^10: whether the card is rotten
+            IF ROTTEN
+            - 20x rotten pip markers
+            - 1 int: 1 if pip is rotten, 0 otherwise
+        2^9: has been played
+            IF HAS BEEN PLAYED
+            - 4 int: number of times played
+
+        2^5: familiar
+        2^4: foil
+        2^3: marked
+        2^2: started a familiar 
+        2: started inverted
+        1: inverted
+ - 4 int: tags
+    2^15: act
+        IF ACT
+        2 int: act number
+    2: whether the run was a win
