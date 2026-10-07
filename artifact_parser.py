@@ -5,7 +5,7 @@ class ArtifactParser(Parser):
     
     def parseArtifacts(self, playerText):
         numArtifacts, playerText = self.splitAtNAsInt(playerText, 2)
-
+    
         
         artifacts = [] # the style on this is different from deck parser which is 
         # probably bad form so ill fix it soon

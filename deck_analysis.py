@@ -10,28 +10,9 @@ def deckLightAnalysis(deck: list[Card]) -> list:
         #once we have stamp info this will have to turn into a switch case statement T_T
         
         Bright = card.phrases[0] + card.phrases[Light.BRIGHT.value+1]
-        tempArray = []
-
-        numBrightPips = int(float(len(Bright))*.5)
-        for i in range(numBrightPips):
-            tempArray.append(Bright[2*i:2*i+2])
-        Bright = tempArray   
-
         Dim = card.phrases[0] + card.phrases[Light.DIM.value+1]
-        tempArray = []
-
-        numDimPips = int(float(len(Dim))*.5)
-        for i in range(numDimPips):
-            
-            tempArray.append(Dim[2*i:2*i+2])
-        Dim = tempArray 
-
         Dark = card.phrases[0] + card.phrases[Light.DARK.value+1]
-        tempArray = []
-        for i in range(int(float(len(Dark))*.5)):
-            
-            tempArray.append(Dark[2*i:2*i+2])
-        Dark = tempArray
+        
 
         # could be condensed for light dim dark. standardization is nice though... 
         def parseLight(fullPhrase: list, startingLight: Light) -> Light:
@@ -40,7 +21,7 @@ def deckLightAnalysis(deck: list[Card]) -> list:
             lightLevel = LightLevel(startingLight) #starting light must be 1, 2 3
            
             for pip in fullPhrase:
-                match (int(pip, 16)):
+                match (pip.value):
                     case 1:
                         lightLevel.bright()     
                     case 2:

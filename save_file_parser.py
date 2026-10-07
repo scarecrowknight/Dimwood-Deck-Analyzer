@@ -16,7 +16,8 @@ class SaveFileParser(Parser):
             playerText = self.saveFileStringExtracter()
             save = self.parsePlayerText(playerText)
             return save
-    # should use extender to off drag and drop functionality to website 
+    
+    # should use adapter style to add drag and drop functionality to website 
     def saveFileStringExtracter(self):
         saveDirectory = str(Path(r"C:\Users\Siris\OneDrive\Desktop\csci for fun\dimwood programs\savedata"))
         
