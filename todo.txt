@@ -3,3 +3,8 @@ major:
 minor: 
 - add artifact functionality to LightLevel
 - add eclipse functionality to LightLevel 
+- replace all card[list] with deck objects.
+
+
+done
+- add card inverses

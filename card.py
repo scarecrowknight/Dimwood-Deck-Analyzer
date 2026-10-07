@@ -20,4 +20,17 @@ class Card:
         #
         # 2) in line with the light enums so that phrases[light.BRIGHT.value] = bright phrase
         #   this is probabl less intuitive but it makes for easier coding. 
+
+    def invert(self):
+        for phrase in self.phrases:
+            self.invertPhrase(phrase)
+
+        # when a card is inverted the bright and dark phrases swap 
+        self.phrases[1], self.phrases[3] = self.phrases[3], self.phrases[1]
+
+    
+    def invertPhrase(self, phrase: list[Pip]):
+        for i in range(len(phrase)):
+            phrase[i] = phrase[i].getInverse()
+        
         

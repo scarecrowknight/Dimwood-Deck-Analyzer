@@ -22,3 +22,30 @@ class Pip(Enum):
     Consume = 19 
     Coin = 20
     Bargain = 21
+
+    def getInverse(self):
+        match(self):
+            case(Pip.Light):
+                return Pip.Dark
+            
+            case(Pip.Dark):
+                return Pip.Light
+            
+            case(Pip.Lighten):
+                return Pip.Darken
+            
+            case(Pip.Darken):
+                return Pip.Lighten
+            
+            # all non light pips are left the same when inverted
+            case _:
+                return self
+
+
+def main():
+    darken = Pip.Darken
+    print(darken.getInverse())
+
+
+if __name__ == "__main__":
+    main()
