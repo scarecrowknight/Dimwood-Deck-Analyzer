@@ -1,6 +1,6 @@
 from enum import Enum
 class Light(Enum):
-    BRIGHT = 0
+    LIGHT = 0
     DIM = 1
     DARK = 2
 # note to future me, enums are itterable in top to bottom order!

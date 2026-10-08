@@ -40,13 +40,14 @@ class SaveFileParser(Parser):
         artifactParser = ArtifactParser()
         artifacts, playerText = artifactParser.parseArtifacts(playerText)
 
-        print(artifacts)
 
         deckParser = DeckParser()
         deck = deckParser.parseDeck(playerText)
-        lightMatrix = deckLightAnalysis(deck)
-        save = SaveFile(name, deck, artifacts, lightMatrix)
+        
+        save = SaveFile(name, deck, artifacts)
         return save
+
+
 
 
 #fun fact, this is basically just a very complex push down automota ^^ which means that Dimwood save files are CFGs :p
